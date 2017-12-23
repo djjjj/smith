@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <title>api test</title>
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <style>
+      body {
+        height: 100%;
+      }
+      #urls {
+        width: 50em;
+        height: 10em;
+      }
+      iframe {
+        border: 0;
+        width: 100%;
+      }
+      .error {
+        color: red;
+      }
+      #output dt {
+        cursor: pointer;
+      }
+      #output dl {
+        white-space: normal;
+      }
+      .value .remove-mark {
+        cursor: no-drop;
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+      TOKENID_WORD = 'tokenid';
+      API_URL = "/api/";
+    </script>
+  </head>
+
+  <body>
+    <div>
+    <input type="file"  id="file4"/><br />
+    <ol>
+      <li>Entry some sample urls.</li>
+      <li>Mark the items of one of the pages need to be extracted by click.</li>
+      <li>Click <code>gen_tpl</code> to generate the rules for the items</li>
+      <li>Click <code>test_all</code> to test the rule</li>
+    </ol>
+    <p>If any field is not extracted as expected, mark more pages, click gen_tpl agian.<br />
+    The program will merge the rules and generate a better one.</p>
+    </div>
+    <!--<input id=url size=100 /><button id=url-button>get url list</button><br />-->
+    <textarea id=urls>https://movie.douban.com/subject/26683290/
+https://movie.douban.com/subject/25726614/
+https://movie.douban.com/subject/7051830/
+https://movie.douban.com/subject/25793398/
+https://movie.douban.com/subject/25827935/</textarea>
+    <button id=go>go</button>
+    <div class=tabhead></div>
+    <pre id=output></pre>
+    <div class=tabbody>
+
+    </div>
+    <script src="./test.js"></script>
+  </body>
+</html>
+<!-- vim: set et sw=2 ts=2 sts=2 ff=unix fenc=utf8: -->
+
