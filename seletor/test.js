@@ -50,24 +50,24 @@ var content_menu = '\
 var schema = {
   'name': {
     type: 'TEXT',
-    is_list: false,
+    is_list: false
   },
   'image': {
     type: 'IMAGE',
-    is_list: false,
+    is_list: false
   },
   'rank': {
     type: 'TEXT',
-    is_list: false,
+    is_list: false
   },
   'description': {
     type: 'TEXT',
-    is_list: false,
+    is_list: false
   },
   'stars': {
     type: 'TEXT',
-    is_list: true,
-  },
+    is_list: true
+  }
 };
 var schema_order = ['name', 'image', 'rank', 'description', 'stars'];
 function load_schema() {
@@ -91,7 +91,7 @@ function Iframe(index) {
            +' data-index="'+index
            +'" style="display: none;"></iframe>').get(0);
   this.mark = {};
-  this.data = {}
+  this.data = {};
   this.uniq_id = 0;
   this.bind();
 };
@@ -118,9 +118,6 @@ Iframe.prototype.load_page = function(url) {
   
   _this.loaded = true;
 }
-Iframe.prototype.test_page = function() {
-  $('#output').text(JSON.stringify(data.result, null, '  '));
-}
 Iframe.prototype.mark_result = function() {
   var result = {};
   $.each(this.mark, function(k, v) {
@@ -141,10 +138,10 @@ Iframe.prototype.mark_result = function() {
     }
   });
   return result;
-}
+};
 Iframe.prototype.hide = function() {
   $(this.elem).hide();
-}
+};
 Iframe.prototype.get_doc = function() {
   return this.elem.contentWindow.document;
 };
@@ -286,13 +283,14 @@ Iframe.prototype.bind_selector = function() {
       wait_for_token = false;
       token_start = cur;
     }
-    if (!token_start) return;
+    // if (!token_start) return;
+    console.log(cur);
     ev.stopImmediatePropagation();
     ev.stopPropagation();
     ev.preventDefault();
 
     current_end = cur;
-    _this.mark_token(token_start, cur);
+    // _this.mark_token(token_start, cur);
   });
 };
 
@@ -358,23 +356,21 @@ Iframe.prototype.add_mark = function(name, type, is_list) {
   _this.mark[name] = {
     type: type,
     is_list: is_list,
-    pos:[{start: start, end: end}],
-  }
+    pos:[{start: start, end: end}]
+  };
 
-  var uniq_id = data[name].data[0].id = _this.uniq_id++;
+  var uniq_id = _this.uniq_id++;
   if (!is_list) {
-    console.log(_this.mark[name].pos);
-    $.each(_this.mark[name].pos, function(i, e) {
+    console.log(_this.mark[name]);
+    $.each(_this.mark[name].pos, function(_, e) {
       for (var i=e.start; i<=e.end; i++) {
         var t = _this.tokens_marked[i];
-        console.log(t);
         t.splice(t.indexOf(e.id), 1);
-        console.log(t);
       }
     });
-    _this.mark[name].pos = [];
+    // _this.mark[name].pos = [];
   }
-  _this.mark[name].pos.push(data[name].data[0]);
+  //  _this.mark[name].pos.push(data[name].data[0]);
   $('#output').text(JSON.stringify(_this.mark_result(), null, '  '));
   for (var i=start; i<=end; i++) {
     _this.tokens_marked[i].push(uniq_id);

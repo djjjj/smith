@@ -13,23 +13,29 @@ class NumId(object):
         return self.start
 
 
-def walk(doc):
+def walk(doc, level):
+    child_levels = []
     for child in doc.iterchildren():
+        child_level = walk(child, level+1)
+        child_levels.append(child_level)
         tag = child.tag
-        if tag not in TAG_FILTER and len(child.getchildren()) < 2:
+        if tag not in TAG_FILTER and child_level - level < 3:
             try:
                 child.set(key='tokenid', value='%s' % _id.get_id())
             except TypeError:
                 pass
         else:
             pass
-        walk(child)
+    if child_levels:
+        return min(child_levels)
+    else:
+        return level
 
 
-html_str = open('/home/djj/956f2fca28e3810dd2aaf934e0949749.html').read()
+html_str = open('/home/djj/abc.html').read()
 doc = html.fromstring(html_str)
 _id = NumId()
-walk(doc)
+walk(doc, 0)
 out = open('seletor/tttt.html', 'w')
 s = html.tostring(doc=doc)
 out.write(s)
