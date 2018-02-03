@@ -21,13 +21,13 @@ def walk(doc, level):
         tag = child.tag
         if tag not in TAG_FILTER and child_level - level < 3:
             try:
-                child.set(key='tokenid', value='%s' % _id.get_id())
+                child.set(key='token_id', value='%s' % _id.get_id())
             except TypeError:
                 pass
         else:
             pass
     if child_levels:
-        return min(child_levels)
+        return max(child_levels)
     else:
         return level
 
