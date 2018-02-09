@@ -7,7 +7,7 @@ var ATTR_SELECTED = 'selected';
 var ATTR_HOLDING = 'holding';
 
 // var define
-var TOKEN_ID = 'tokenid';
+var TOKEN_ID = 'token_id';
 
 var FILTER_ATTRIBUTES = [TOKEN_ID, ATTR_HOLDING, ATTR_SELECTED, 'target', 'alt'];
 

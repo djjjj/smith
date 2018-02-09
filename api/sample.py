@@ -1,15 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-    get_samples
-    ~~~~~~~
-
-    Module description here.
-
-    :author: djj
-    :copyright: (c) 2017, Tungee
-    :date created: 2017-12-23
-    :python version: 2.7
+    hack by djj -_,- | good luck!
 """
 from . import api
 
