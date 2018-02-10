@@ -83,6 +83,6 @@ Iframe.prototype.bind_selector = function() {
 
 };
 Iframe.prototype.mark = function(element) {
-    element.setAttribute(ATTR_SELECTED, 'disabled');
+    element.setAttribute(ATTR_SELECTED, 'selected');
     this.mark_box.add(element)
 };

@@ -18,7 +18,7 @@
 
   <body>
     <div class="container">
-      <div class="left">
+      <div class="col-md-3 col-sm-3 left">
         <div class="row">
           <div class="row">
             <ul class="nav nav-tabs" role="tablist">
@@ -29,7 +29,7 @@
             <!-- 面板区 -->
             <div class="tab-content">
               <div role="tabpanel" class="tab-pane" id="file">
-                <input id="upload" type="file"/>
+                <input type="file"/>
               </div>
               <div role="tabpanel" class="tab-pane active" id="url">
                 <input type="text"/>
@@ -44,7 +44,7 @@
           </div>
         </div>
         <div class="row">
-          <div>
+          <div class="row">
             <table id="MarkBox" class="tableBox">
               <tbody>
               </tbody>
@@ -52,13 +52,13 @@
           </div>
         </div>
         <div class="row">
-          <div><input id="submit" class="submit-btn" type="button" value="submit"></div>
+          <div class="row"><input id="submit" class="submit-btn" type="button" value="submit"></div>
         </div>
         <div class="row">
           <pre id="output"></pre>
         </div>
       </div>
-      <div class="right">
+      <div class="col-md-9 col-sm-9 right">
         <div id="loading" style="display: none;"><img src="../static/img/loading.gif"/></div>
         <div id="showBox"></div>
         <div><table id="infoBox" class="tableBox"><tbody></tbody></table></div>

@@ -14,17 +14,7 @@ var mark_box = new MarkBox();
 var iframe = new Iframe(info_box, mark_box);
 
 // css
-var iframe_css = '\
-['+ATTR_HOLDING+']:hover {\
-    background: #BBFFFF !important;\
-}\
-['+ATTR_SELECTED+'] {\
-    background: #FFFF37 !important;\
-}\
-img['+TOKEN_ID+']:hover, img.'+ATTR_SELECTED+'['+TOKEN_ID+'] {\
-    border: 5px solid #00FFFF !important;\
-    box-sizing: border-box;\
-}';
+var iframe_css = '['+ATTR_HOLDING+']{border:2px solid #00FFFF!important;box-sizing:border-box;}['+ATTR_SELECTED+']{background: #FFFF37 !important;}img['+ATTR_SELECTED+']{border:2px solid #FFFF37;box-sizing:border-box;}';
 
 $('#go').on('click', function() {
     var active_e = $('.tab-content').find('.active')[0];
