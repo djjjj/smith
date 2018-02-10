@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <title>html selector</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link href="../static/css/main.css" rel="stylesheet" type="text/css">
+    <script>
+      var mark_api = "{{ mark_api }}";
+      var parse_api = "{{ parse_api }}";
+      var TOKEN_ID = "{{ token_id }}";
+    </script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="left">
+        <div class="row">
+          <div class="row">
+            <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation"><a href="#file" role="tab" data-toggle="tab">Local File</a></li>
+              <li role="presentation" class="active"><a href="#url" role="tab" data-toggle="tab">Http Request</a></li>
+              <li role="presentation"><a href="#spider" role="tab" data-toggle="tab">Tungee Spider Id</a></li>
+            </ul>
+            <!-- 面板区 -->
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane" id="file">
+                <input id="upload" type="file"/>
+              </div>
+              <div role="tabpanel" class="tab-pane active" id="url">
+                <input type="text"/>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="spider">
+                <input type="text" value="unavailale for now" disabled/>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <input id="go" type="button" value="rock it baby!">
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <table id="MarkBox" class="tableBox">
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="row">
+          <div><input id="submit" class="submit-btn" type="button" value="submit"></div>
+        </div>
+        <div class="row">
+          <pre id="output"></pre>
+        </div>
+      </div>
+      <div class="right">
+        <div id="loading" style="display: none;"><img src="../static/img/loading.gif"/></div>
+        <div id="showBox"></div>
+        <div><table id="infoBox" class="tableBox"><tbody></tbody></table></div>
+      </div>
+    </div>
+    <script src="../static/js/markBox.js"></script>
+    <script src="../static/js/infoBox.js"></script>
+    <script src="../static/js/iframe.js"></script>
+    <script src="../static/js/main.js"></script>
+  </body>
+</html>
+

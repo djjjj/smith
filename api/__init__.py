@@ -5,6 +5,6 @@
 """
 from flask import Blueprint
 
-api = Blueprint('api', __name__)
+sample_api = Blueprint('sample', __name__, url_prefix='/api')
 
-from api import sample
+from . import sample

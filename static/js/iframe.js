@@ -10,23 +10,12 @@ function Iframe(info_box, mark_box) {
   this.data = {};
   this.bind();
 }
-Iframe.prototype.show = function() {
-  if (!this.loaded) {
-    this.load_page();
-  } else {
-  }
+Iframe.prototype.show = function(html) {
+  this.html = html;
+  this.write(html);
   $(this.elem).show();
 };
-Iframe.prototype.load_page = function() {
-  var _this = this;
-  var f = document.getElementById("file4").files[0];
-  var reader =new FileReader();
-  reader.readAsText(f);
-  reader.onload=function(){
-    _this.write(this.result);
-  };
-  _this.loaded = true;
-};
+
 Iframe.prototype.hide = function() {
   $(this.elem).hide();
 };
@@ -84,7 +73,7 @@ Iframe.prototype.bind_selector = function() {
     ev.stopPropagation();
     ev.preventDefault();
     _this.info_box.show(ev);
-    ev.target.setAttribute(ATTR_HOLDING, 'true')
+    ev.target.setAttribute(ATTR_HOLDING, 'holding')
   });
   doc.addEventListener('mouseout', function(ev) {
     if (!ev.target.hasAttribute(TOKEN_ID)) return ;
@@ -94,6 +83,6 @@ Iframe.prototype.bind_selector = function() {
 
 };
 Iframe.prototype.mark = function(element) {
-    element.setAttribute(ATTR_SELECTED, true);
+    element.setAttribute(ATTR_SELECTED, 'disabled');
     this.mark_box.add(element)
 };

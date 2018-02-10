@@ -12,6 +12,33 @@ iframe {
     margin-left: 0;
     width: 100%;
 }
+.left {
+    width: 20%;
+    float: left;
+    position: fixed;
+    top: 5px;
+    left: 5px;
+}
+.right {
+    width: 75%;
+    float: right;
+}
+.row {
+    width: auto;
+    margin: 5px;
+}
+#go {
+    background-color: #1E90FF;
+    color: #FFFFFF;
+    float: right;
+}
+#loading {
+    position: fixed;
+    z-index: 999;
+    top: 50%;
+    left: 50%;
+    display: inline;
+}
 .tableBox th{
 	background-color:#1E90FF;
 	color:#FFFFFF

@@ -15,6 +15,8 @@ function MarkBox() {
       '</tr>').appendTo(this.elem);
 
     _box.MarkItem = function(property_selector, close_btn, token_id, index) {
+        var _item = this;
+        _item.close_btn = close_btn;
         var tr = $('<tr></tr>').attr({'index': index, 'class': 'mark-item'});
         $('<td></td>').attr('class', 'token-text').text(token_id).appendTo(tr);
         $('<td></td>').append(
@@ -22,6 +24,10 @@ function MarkBox() {
         ).appendTo(tr);
         $('<td></td>').append(property_selector).appendTo(tr);
         $('<td></td>').append(close_btn).appendTo(tr);
+        tr.bind('mouseover', function() {
+            console.log(_item);
+            _item.close_btn.ele.setAttribute(ATTR_HOLDING, 'true')
+        });
         return tr;
     };
     _box.propertySelector = function(ele) {

@@ -4,6 +4,7 @@
     hack by djj -_,- | good luck!
 """
 from copy import copy
+from lxml import html
 
 from .target_node import TargetNode
 from .html_marker import TOKEN_ID
@@ -25,6 +26,10 @@ class TargetTree(object):
         self._target_tree = []
         self._create_pth_list(marked_doc, [])
         self._create_target_tree()
+
+    @property
+    def target_tree(self):
+        return self._target_tree
 
     def _create_target_tree(self):
         def compare(l1, l2):
