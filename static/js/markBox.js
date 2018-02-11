@@ -2,13 +2,16 @@
  * Created by djj on 18-2-7.
  */
 
+var general = 'general';
+var groups = [];
+
 function MarkItem(ele, token_id, index) {
     var _item = this;
     _item.ele = ele;
     _item.index = index;
 
     function PropertySelector() {
-        var selector = $('<select></select>').attr('class', 'htmlProperty').append(
+        var selector = $('<select></select>').append(
             $('<option value="text">text</option>')
         );
         var attributes = _item.ele.attributes;
@@ -20,38 +23,41 @@ function MarkItem(ele, token_id, index) {
                 ).attr('value', property_name).text(property_name));
         }
         return selector
-    };
-    function GroupSelector() {
-        var selector = $('<select class="selectpicker form-control" data-live-search="true" name="<span style="font-family:Arial, Helvetica, sans-serif;">addid</span><span style="font-family:Arial, Helvetica, sans-serif;">" id="addid"></span>  </select>').append(
-            $('<option value="text">all</option>')
-        );
-//        for (var i = 0; i < attributes.length; i++) {
-//            var property_name = attributes[i].name;
-//            if (-1 === $.inArray(property_name, FILTER_ATTRIBUTES))
-//                selector.append($(
-//                    '<option></option>'
-//                ).attr('value', property_name).text(property_name));
-//        }
-        return selector
-    };
+    }
+    function GroupManager() {
+        var _gm = this;
+        groups.unshift(general);
+        _gm.pre_value = groups[groups.length-1];
+        var text_input = $('<input type="text"/>');
+        text_input.val(this.pre_value);
+        text_input.get(0).onchange = function(e) {
+            var value = e.target.value;
+            var i = groups.indexOf(_gm.pre_value);
+            groups.splice(i, i+1);
+            _gm.pre_value = value;
+            groups.push(value);
+        };
+        return text_input
+    }
     function DeleteItem() {
-        var _btn = this;
         var btn = $('<input type="button" value="delete"/>').attr('class', 'delete-btn');
         btn.bind('click', function () {
             _item.ele.removeAttribute(ATTR_SELECTED);
-            _item.ele.removeAttribute(ATTR_HOLDING)
+            _item.ele.removeAttribute(ATTR_HOLDING);
             mark_box.remove(_item.index)
         });
         return btn
     }
 
     var tr = $('<tr></tr>').attr({'index': index, 'class': 'mark-item'});
-    $('<td></td>').attr('class', 'token-text').text(token_id).appendTo(tr);
     $('<td></td>').append(
-        $('<input type="text"/>').attr('class', 'fieldName')
+        $('<input type="text" disabled/>')
+    ).text(token_id).appendTo(tr);
+    $('<td></td>').append(
+        $('<input type="text"/>')
     ).appendTo(tr);
     $('<td></td>').append(new PropertySelector()).appendTo(tr);
-    $('<td></td>').append(new GroupSelector()).appendTo(tr);
+    $('<td></td>').append(new GroupManager()).appendTo(tr);
     $('<td></td>').append(new DeleteItem()).appendTo(tr);
     tr.bind('mouseover', function() {
         _item.ele.setAttribute(ATTR_HOLDING, 'true')
@@ -69,8 +75,9 @@ function MarkBox() {
 
     $('<tr>' +
         '<th>id</th>' +
-        '<th>field name</th>' +
-        '<th>element property</th>' +
+        '<th>field</th>' +
+        '<th>property</th>' +
+        '<th>group</th>'+
         '<th></th>' +
       '</tr>').appendTo(this.elem);
 }
@@ -90,10 +97,11 @@ MarkBox.prototype.get_markers = function() {
     var children = $(this.elem).find('.mark-item');
     var flag = true;
     for (var i = 0; i < children.length; i++){
-        var token_id = $(children[i]).find('.token-text')[0].innerText;
-        var input = $(children[i]).find('.fieldName');
+        var tds = children[i].childNodes;
+        var token_id = tds[0].innerText;
+        var input = $(tds[1].childNodes[0]);
         var field_name = input.val();
-        var attr = $(children[i]).find('.htmlProperty').val();
+        var attr = tds[2].childNodes[0].value;
         if (!field_name) {
             input.addClass('warn');
             flag = false;

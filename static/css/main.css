@@ -1,11 +1,25 @@
+html{overflow-y:scroll;}
 body {
-    height: 100%;
+    background-color: #FFFFFF;
     font-size: 1em;
     font-weight: 700;
+    height: 100%;
+    color: #555 !important;
 }
 iframe {
     border: 0;
     width: 100%;
+}
+.nav {
+    background-color: #1DB0B8;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.nav-tabs li>a {
+    color: #555;
+}
+.nav-tabs>li.active>a {
+    color: #1DB0B8 !important;
 }
 .container {
     padding-right: 0;
@@ -14,24 +28,14 @@ iframe {
     margin-left: 0;
     width: 100%;
 }
-.left {
-    height: 100%;
-    float: left;
-    position: fixed;
-    top: 5px;
-    left: 5px;
-}
-.right {
-    float: right;
-}
 .row {
     width: auto;
-    margin: 5px;
+    margin: 3px 1px;
 }
 #go {
-    background-color: #1E90FF;
-    color: #FFFFFF;
+    background-color: #1DB0B8;
     float: right;
+    border: 0;
 }
 #loading {
     position: fixed;
@@ -40,9 +44,19 @@ iframe {
     left: 50%;
     display: inline;
 }
+.box-container-1{
+    margin-top: 16%;
+    min-height: 100px;
+    border: 1px solid #1DB0B8;
+    border-radius: 8px;
+}
+.box-container-2{
+    min-height: 300px;
+    border: 1px solid #1DB0B8;
+    border-radius: 8px;
+}
 .tableBox th{
-	background-color:#1E90FF;
-	color:#FFFFFF
+	background-color: #1DB0B8;
 }
 .tableBox, .tableBox th, .tableBox td {
 	font-size:1em;
@@ -50,30 +64,39 @@ iframe {
 	border-collapse:collapse;
     padding: 0.3em;
 }
-.tableBox tr{
-	border: 1px solid #7ebffe;
-}
 .tab-pane{
     padding-left: 25%;
-    padding-top:5%;
+    padding-top: 5%;
 }
-#MarkBox th:nth-child(2), #MarkBox th:nth-child(2) {
-    width: 40%;
+#MarkBox {
+    width: 100%;
+    min-height: 30%;
 }
-#MarkBox th:nth-child(1),
-#MarkBox th:nth-child(n+3),
-#MarkBox th:nth-child(1),
-#MarkBox th:nth-child(n+3) {
+#MarkBox th:nth-child(1), #MarkBox td:nth-child(1) {
+    width: 10%;
+    height: 39px;
+    border-top-left-radius: 5px;
+}
+#MarkBox th:nth-child(2), #MarkBox td:nth-child(2) {
+    width: 30%;
+}
+#MarkBox th:nth-child(3), #MarkBox td:nth-child(3) {
     width: 20%;
 }
-.fieldName, .htmlProperty, .delete-btn {
+#MarkBox th:nth-child(4), #MarkBox td:nth-child(4) {
+    width: 25%;
+}
+#MarkBox th:nth-child(5), #MarkBox td:nth-child(5) {
+    width: 15%;
+    border-top-right-radius: 5px;
+}
+#MarkBox input, #MarkBox select, #MarkBox option{
     box-sizing: border-box;
     text-align:center;
     font-size: 1em;
     height:2em;
     border-radius:4px;
     border:1px solid #c8cccf;
-    color:#6a6f77;
     display:block;
     outline:0;
     padding:0 1em;
@@ -85,19 +108,48 @@ iframe {
     color: #FFFFFF;
 }
 .submit-btn {
-    background-color: #1E90FF;
-    color: #FFFFFF;
+    background-color: #1DB0B8;
     float: right;
+    border: 0;
 }
+#select-toggle {
+    border: 2px solid #1DB0B8;
+    border-radius: 50%;
+}
+#select-toggle.on {
+    background-color: #1DB0B8;
+}
+
 #infoBox {
-    width: 300px;
-    position: fixed;
-    right: 10px;
-    top: 20px;
+    word-break: break-all;
+    word-wrap: break-word;
+    width: 500px;
+    z-index: 999;
+    position: absolute;
+    background-color: #00343F;
+    font-weight: 400;
+    color: #FDFDFD;
+    border-radius: 5px;
+}
+#infoBox th {
+    color: #FFFFFF;
+    width: 80px;
+    background-color: #000000;
 }
 #output {
     min-height:250px;
+    border: 1px solid #1DB0B8;
+    border-radius: 5px;
 }
 .warn{
     background-color: gold;
+}
+#showBox {
+    border: 2px solid #000000;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+input {
+    border-radius: 5px;
+    text-align: center;
 }

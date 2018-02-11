@@ -35,5 +35,4 @@ def parse():
     html = request.form['data']
 
     result = parse_html(html, target)
-
     return jsonify(data=result), 200

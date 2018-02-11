@@ -20,7 +20,7 @@
     <div class="container">
       <div class="col-md-3 col-sm-3 left">
         <div class="row">
-          <div class="row">
+          <div class="row box-container-1">
             <ul class="nav nav-tabs" role="tablist">
               <li role="presentation"><a href="#file" role="tab" data-toggle="tab">Local File</a></li>
               <li role="presentation" class="active"><a href="#url" role="tab" data-toggle="tab">Http Request</a></li>
@@ -32,10 +32,10 @@
                 <input type="file"/>
               </div>
               <div role="tabpanel" class="tab-pane active" id="url">
-                <input type="text"/>
+                <label>URL: <input type="text"/></label>
               </div>
               <div role="tabpanel" class="tab-pane" id="spider">
-                <input type="text" value="unavailale for now" disabled/>
+                <label>Spider ID: <input type="text" value="unavailale for now" disabled/></label>
               </div>
             </div>
           </div>
@@ -44,24 +44,29 @@
           </div>
         </div>
         <div class="row">
-          <div class="row">
+          <div class="row box-container-2">
             <table id="MarkBox" class="tableBox">
               <tbody>
               </tbody>
             </table>
           </div>
-        </div>
-        <div class="row">
-          <div class="row"><input id="submit" class="submit-btn" type="button" value="submit"></div>
+          <div class="row">
+            <input id="submit" class="submit-btn" type="button" value="submit">
+          </div>
         </div>
         <div class="row">
           <pre id="output"></pre>
         </div>
       </div>
       <div class="col-md-9 col-sm-9 right">
-        <div id="loading" style="display: none;"><img src="../static/img/loading.gif"/></div>
-        <div id="showBox"></div>
-        <div><table id="infoBox" class="tableBox"><tbody></tbody></table></div>
+        <div class="row">
+          <img id="select-toggle" src="../static/img/pointer.ico"/>
+        </div>
+        <div class="row">
+          <div id="loading" style="display: none;"><img src="../static/img/loading.gif"/></div>
+          <div id="showBox"></div>
+          <div><table id="infoBox" class="tableBox"><tbody></tbody></table></div>
+        </div>
       </div>
     </div>
     <script src="../static/js/markBox.js"></script>
