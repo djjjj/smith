@@ -34,9 +34,14 @@ function MarkItem(ele, token_id, index) {
             var value = e.target.value;
             var i = groups.indexOf(_gm.pre_value);
             groups.splice(i, i+1);
+            if (!value){
+                value = general;
+                _gm.text_input.val(value);
+            }
             _gm.pre_value = value;
             groups.push(value);
         };
+        _gm.text_input = text_input;
         return text_input
     }
     function DeleteItem() {
@@ -99,19 +104,21 @@ MarkBox.prototype.get_markers = function() {
     for (var i = 0; i < children.length; i++){
         var tds = children[i].childNodes;
         var token_id = tds[0].innerText;
-        var input = $(tds[1].childNodes[0]);
-        var field_name = input.val();
+        var field_input = $(tds[1].childNodes[0]);
+        var field_name = field_input.val();
         var attr = tds[2].childNodes[0].value;
+        var group = tds[3].innerText;
         if (!field_name) {
-            input.addClass('warn');
+            field_input.addClass('warn');
             flag = false;
         }
         else
-            input.removeClass('warn');
+            field_input.removeClass('warn');
         result.push({
             'token_id': token_id,
             'field_name': field_name,
-            'html_element_attribute': attr
+            'html_element_attribute': attr,
+            'group_name': group
         })
     }
     if (flag === false)

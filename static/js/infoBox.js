@@ -28,9 +28,13 @@ InfoBox.prototype.show = function(e) {
     this.x = (e.clientX || e.pageX)+50;
     this.y = (e.clientY || e.pageY)+80;
 
-    var overflow = this.y + this.elem.offsetHeight - height;
-    if (overflow >= 0)
-        this.y -= (80+overflow);
+    var overflow_y = this.y + this.elem.offsetHeight - height;
+    var overflow_x = this.x + this.elem.offsetWidth - width;
+    if (overflow_y >= 0)
+        this.y -= (80+overflow_y);
+    if (overflow_x >= 0)
+        this.x -= (50+overflow_x);
+
     $(this.elem).css({
         'left': this.x,
         'top': this.y

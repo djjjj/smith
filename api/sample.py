@@ -19,11 +19,11 @@ def get_spider_list(spider_id):
 def mark():
     input_type = request.form['type']
     if input_type == 'file':
-        data = request.files['data'].read()
-        marked = mark_html(data)
+        marked = mark_html(request.files['data'].read())
     elif input_type == 'url':
-        data = request.form['data']
-        marked = mark_remote_file(data)
+        marked = mark_remote_file(request.form['data'])
+    elif input_type == 'text':
+        marked = mark_html(request.form['data'])
     else:
         return jsonify(), 400
     return jsonify(data=marked), 200

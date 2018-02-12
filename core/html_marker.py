@@ -30,7 +30,7 @@ class HtmlMarker(object):
             child_level = self._walk(child, level+1)
             child_levels.append(child_level)
             tag = child.tag
-            if tag not in TAG_FILTER and child_level - level < 3:
+            if tag not in TAG_FILTER and child_level - level <= 3:
                 try:
                     child.set(key=TOKEN_ID, value='%s' % self.id_creator.get_id())
                 except TypeError:
