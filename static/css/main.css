@@ -1,8 +1,8 @@
 html{overflow-y:scroll;}
+html::-webkit-scrollbar{width:0px}
 body {
     background-color: #FFFFFF;
     font-size: 1em;
-    font-weight: 700;
     height: 100%;
     color: #555 !important;
 }
@@ -15,8 +15,19 @@ iframe {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
+.tab-pane {
+    padding-left: 25%;
+    padding-right: 25%;
+}
+.nav-tabs>li {
+    width: 30%;
+    text-align: center;
+}
 .nav-tabs li>a {
     color: #555;
+    display: block;
+    height: 4.5em;
+    font-weight: 700;
 }
 .nav-tabs>li.active>a {
     color: #1DB0B8 !important;
@@ -45,37 +56,42 @@ iframe {
     display: inline;
 }
 .box-container-1{
-    margin-top: 16%;
+    margin-top: 5%;
     min-height: 100px;
     border: 1px solid #1DB0B8;
     border-radius: 8px;
 }
-.box-container-2{
-    min-height: 300px;
-    border: 1px solid #1DB0B8;
-    border-radius: 8px;
-}
-.tableBox th{
-	background-color: #1DB0B8;
-}
 .tableBox, .tableBox th, .tableBox td {
-	font-size:1em;
 	text-align:center;
 	border-collapse:collapse;
     padding: 0.3em;
 }
-.tab-pane{
-    padding-left: 25%;
-    padding-top: 5%;
-}
 #MarkBox {
+    display: table;
     width: 100%;
-    min-height: 30%;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: 1px solid #1DB0B8;
 }
+#MarkBox thead {
+    background-color: #1DB0B8;
+    display: table;
+    width: 100%;
+    table-layout:fixed;
+
+}
+#MarkBox tbody {
+    display: block;
+    min-height: 10em;
+    max-height: 25em;
+    overflow-y: auto;
+    width: 100%;
+
+}
+tbody::-webkit-scrollbar{width: 0}
 #MarkBox th:nth-child(1), #MarkBox td:nth-child(1) {
     width: 10%;
     height: 39px;
-    border-top-left-radius: 5px;
 }
 #MarkBox th:nth-child(2), #MarkBox td:nth-child(2) {
     width: 30%;
@@ -88,18 +104,16 @@ iframe {
 }
 #MarkBox th:nth-child(5), #MarkBox td:nth-child(5) {
     width: 15%;
-    border-top-right-radius: 5px;
 }
 #MarkBox input, #MarkBox select, #MarkBox option{
     box-sizing: border-box;
     text-align:center;
-    font-size: 1em;
     height:2em;
     border-radius:4px;
     border:1px solid #c8cccf;
     display:block;
     outline:0;
-    padding:0 1em;
+    padding:0 0.6em;
     text-decoration:none;
     width:100%;
 }
@@ -137,7 +151,7 @@ iframe {
     background-color: #000000;
 }
 #output {
-    min-height:250px;
+    min-height: 10em;
     border: 1px solid #1DB0B8;
     border-radius: 5px;
 }
@@ -152,4 +166,7 @@ iframe {
 input {
     border-radius: 5px;
     text-align: center;
+}
+input[type='button'] {
+    font-weight: 700;
 }

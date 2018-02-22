@@ -77,14 +77,6 @@ function MarkBox() {
     var _box = this;
     _box.elem = $('#MarkBox').get(0);
     _box.index = 0;
-
-    $('<tr>' +
-        '<th>id</th>' +
-        '<th>field</th>' +
-        '<th>property</th>' +
-        '<th>group</th>'+
-        '<th></th>' +
-      '</tr>').appendTo(this.elem);
 }
 
 MarkBox.prototype.add = function(ele) {

@@ -26,6 +26,7 @@ def mark():
         marked = mark_html(request.form['data'])
     else:
         return jsonify(), 400
+    marked = str(marked, encoding='utf-8')
     return jsonify(data=marked), 200
 
 
@@ -35,4 +36,5 @@ def parse():
     html = request.form['data']
 
     result = parse_html(html, target)
+    result = str(result, encoding='utf-8')
     return jsonify(data=result), 200
