@@ -1,38 +1,34 @@
-# coding: utf-8
-import json
-from lxml import html
+# from selenium import webdriver
+from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.support.ui import WebDriverWait  # available since 2.4.0
+from selenium.webdriver.support import expected_conditions as EC  # available since 2.26.0
+from selenium.webdriver.phantomjs.webdriver import WebDriver
 
-from core.target_tree import TargetTree
-from core.html_marker import html_mark
-from core.coder import Coder
+# Create a new instance of the Firefox driver
+driver = WebDriver(executable_path='/opt/phantomjs-2.1.1-linux-x86_64/bin/phantomjs', port=5001)
 
-html_mark(in_f='/home/djj/htmls2/0.html', out_f='./seletor/sample.html')
-doc = html.fromstring(open('./seletor/sample.html').read())
+# go to the google home page
+driver.get("http://www.baidu.com")
 
-target_list = """[
-    {
-        "token_id": "337",
-        "field_name": "title",
-        "html_element_attribute": "text"
-    },
-    {
-        "token_id": "340",
-        "field_name": "text",
-        "html_element_attribute": "text"
-    },
-    {
-        "token_id": "341",
-        "field_name": "link",
-        "html_element_attribute": "text"
-    },
-    {
-        "token_id": "16",
-        "field_name": "keyword",
-        "html_element_attribute": "value"
-    }
-]"""
+# the page is ajaxy so the title is originally this:
+print(driver.title)
 
-target_list = json.loads(target_list)
-tt = TargetTree(doc, target_list)
-cc = Coder(tt._target_tree)
-print '\n'.join(cc._codes)
+# find the element that's name attribute is q (the google search box)
+inputElement = driver.find_element_by_id("kw")
+
+# type in the search
+inputElement.send_keys("cheese!")
+
+# submit the form (although google automatically searches now without submitting)
+inputElement.submit()
+
+try:
+    # we have to wait for the page to refresh, the last thing that seems to be updated is the title
+    WebDriverWait(driver, 10).until(EC.title_contains("cheese!"))
+
+    # You should see "cheese! - Google Search"
+    print(driver.title)
+    print(driver.get_cookies())
+
+finally:
+    driver.quit()  

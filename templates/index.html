@@ -9,17 +9,15 @@
     <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <link href="../static/css/main.css" rel="stylesheet" type="text/css">
-    <script>
-      var mark_api = "{{ mark_api }}";
-      var parse_api = "{{ parse_api }}";
-      var TOKEN_ID = "{{ token_id }}";
-    </script>
+    <link rel="stylesheet" href="../static/css/style.min.css" />
+    <script src="../static/js/jstree.min.js"></script>
   </head>
 
   <body>
     <div class="container">
       <div class="col-md-3 col-sm-3 left">
         <div class="row">
+          <label>INPUT:</label>
           <div class="row box-container-1">
             <ul class="nav nav-tabs" role="tablist">
               <li role="presentation"><a href="#file" role="tab" data-toggle="tab">Local File</a></li>
@@ -29,13 +27,13 @@
             <!-- 面板区 -->
             <div class="tab-content">
               <div role="tabpanel" class="tab-pane" id="file">
-                <label>FILE: <input type="file"/></label>
+                <label>FILE:</br><input type="file"/></label>
               </div>
               <div role="tabpanel" class="tab-pane active" id="url">
-                <label>URL: <input type="text"/></label>
+                <label>URL:</br><input type="text"/></label>
               </div>
               <div role="tabpanel" class="tab-pane" id="spider">
-                <label>Spider ID: <input type="text" value="unavailale for now" disabled/></label>
+                  <label>Spider ID:</br><input type="text" value="unavailale for now" disabled/></label>
               </div>
             </div>
           </div>
@@ -44,7 +42,8 @@
           </div>
         </div>
         <div class="row">
-          <div class="row box-container-2">
+          <label>MARKER:</label>
+          <div class="row">
             <table id="MarkBox" class="tableBox">
               <thead>
                 <tr><th>id</th><th>field</th><th>property</th><th>group</th><th></th></tr>
@@ -58,7 +57,23 @@
           </div>
         </div>
         <div class="row">
-          <pre id="output"></pre>
+          <label>STRUCTURE:</label>
+          <div id="jstree">
+            <!-- in this example the tree is populated from inline HTML -->
+            <ul>
+              <li>Root node 1
+                <ul>
+                  <li id="child_node_1">Child node 1</li>
+                  <li>Child node 2</li>
+                </ul>
+              </li>
+              <li>Root node 2</li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+            <label>RESULT:</label>
+            <pre id="output" class="result"></pre>
         </div>
       </div>
       <div class="col-md-9 col-sm-9 right">
@@ -72,6 +87,39 @@
         </div>
       </div>
     </div>
+    <script>
+      var mark_api = "{{ mark_api }}";
+      var parse_api = "{{ parse_api }}";
+      var TOKEN_ID = "{{ token_id }}";
+      $('#jstree').jstree({
+          "core" : {
+            "animation" : 0,
+            "check_callback" : true,
+            "themes" : { "stripes" : true },
+            'data' : [
+                {
+                    'id': 'root',
+                    "parent" : "#",
+                    "text" : "ROOT",
+                    'icon': '../static/img/list.ico'
+                },
+                {
+                    'id': 'result1',
+                    "parent" : "root",
+                    "text" : "result",
+                    'icon': '../static/img/dict.ico'
+                }
+            ]
+          },
+          "plugins" : [
+            "contextmenu", "dnd",
+            "state"
+          ]
+        });
+      $('#jstree').on("changed.jstree", function (e, data) {
+          console.log(data);
+        });
+    </script>
     <script src="../static/js/markBox.js"></script>
     <script src="../static/js/infoBox.js"></script>
     <script src="../static/js/iframe.js"></script>

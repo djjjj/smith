@@ -91,12 +91,12 @@ Iframe.prototype.mouse_down = function(ev) {
     ev.preventDefault();
     if (!element.hasAttribute(ATTR_SELECTED)){
         element.setAttribute(ATTR_SELECTED, 'selected');
-        mark_box.add(element)
+        mark_box.add(ev)
     }
 };
 
 Iframe.prototype.mouse_over = function(ev) {
-    if (!ev.target.hasAttribute(TOKEN_ID)) return ;
+    if (!ev.target.hasAttribute(TOKEN_ID) || ev.target.hasAttribute(ATTR_HOLDING)) return ;
     ev.stopImmediatePropagation();
     ev.stopPropagation();
     ev.preventDefault();

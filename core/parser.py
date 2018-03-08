@@ -32,10 +32,6 @@ class Parser(object):
             )
 
     def _loop(self, pth_list, parent):
-        # code = '%sfor %s in %s.children()'
-        # var_child = self._var_child
-        # self._codes.append(code % (self._indent, var_child, parent))
-        # self._indent_counter += 1
         for pth in pth_list:
             self._parse(pth, parent)
 
@@ -49,8 +45,8 @@ class Parser(object):
             var = parent_var(child)
         return var
 
-    def _save_result(self, parent, indentity, property_name, field):
-        element = parent(indentity)
+    def _save_result(self, parent, identity, property_name, field):
+        element = parent(identity)
         if property_name == 'text':
             self._result[field] = element.text()
         else:

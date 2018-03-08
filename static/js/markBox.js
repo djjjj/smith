@@ -5,16 +5,16 @@
 var general = 'general';
 var groups = [];
 
-function MarkItem(ele, token_id, index) {
+function MarkItem(ev, index) {
     var _item = this;
-    _item.ele = ele;
+    _item.ev = ev;
     _item.index = index;
 
     function PropertySelector() {
         var selector = $('<select></select>').append(
             $('<option value="text">text</option>')
         );
-        var attributes = _item.ele.attributes;
+        var attributes = _item.ev.target.attributes;
         for (var i = 0; i < attributes.length; i++) {
             var property_name = attributes[i].name;
             if (-1 === $.inArray(property_name, FILTER_ATTRIBUTES))
@@ -47,14 +47,15 @@ function MarkItem(ele, token_id, index) {
     function DeleteItem() {
         var btn = $('<input type="button" value="delete"/>').attr('class', 'delete-btn');
         btn.bind('click', function () {
-            _item.ele.removeAttribute(ATTR_SELECTED);
-            _item.ele.removeAttribute(ATTR_HOLDING);
+            _item.ev.target.removeAttribute(ATTR_SELECTED);
+            _item.ev.target.removeAttribute(ATTR_HOLDING);
             mark_box.remove(_item.index)
         });
         return btn
     }
 
     var tr = $('<tr></tr>').attr({'index': index, 'class': 'mark-item'});
+    var token_id = ev.target.getAttribute(TOKEN_ID);
     $('<td></td>').append(
         $('<input type="text" disabled/>')
     ).text(token_id).appendTo(tr);
@@ -65,10 +66,10 @@ function MarkItem(ele, token_id, index) {
     $('<td></td>').append(new GroupManager()).appendTo(tr);
     $('<td></td>').append(new DeleteItem()).appendTo(tr);
     tr.bind('mouseover', function() {
-        _item.ele.setAttribute(ATTR_HOLDING, 'true')
+        iframe.mouse_over(_item.ev);
     });
     tr.bind('mouseleave', function() {
-        _item.ele.removeAttribute(ATTR_HOLDING)
+        iframe.mouse_out(_item.ev);
     });
     return tr;
 }
@@ -79,10 +80,9 @@ function MarkBox() {
     _box.index = 0;
 }
 
-MarkBox.prototype.add = function(ele) {
+MarkBox.prototype.add = function(ev) {
     var index = this.index;
-    var token_id = ele.getAttribute(TOKEN_ID);
-    var tr = new MarkItem(ele, token_id, index);
+    var tr = new MarkItem(ev, index);
     tr.appendTo(this.elem);
     this.index += 1
 };

@@ -4,6 +4,7 @@
     hack by djj -_,- | good luck!
 """
 from copy import copy
+from functools import reduce
 from lxml import html
 
 from .target_node import TargetNode
