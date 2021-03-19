@@ -4,7 +4,7 @@ Flask
 get==0.0.39
 idna==2.6
 itsdangerous==0.24
-Jinja2==2.10
+Jinja2==2.11.3
 lxml==4.1.1
 pyquery
 requests
